@@ -1,20 +1,34 @@
 package com.sample
  
-import com.sample.DroolsTest.Message;
+import com.sample.DroolsTest.Caller;
+dialect "java"
  
-rule "Hello World"
+/*rule "check1"
     when
-        m : Message( status == Message.HELLO, myMessage : message )
+        m : Caller( name:principalName  )
     then
-        System.out.println( myMessage );
-        m.setMessage( "Goodbye cruel world" );
-        m.setStatus( Message.GOODBYE );
-        update( m );
+    	System.out.println( "fire by principalName " );
+        System.out.println( name );
+        m.setSystem(name);       
+       // update( m );
+end*/
+
+rule "check2"
+    when
+        m:Caller( userAgent == "abc" )
+    then
+        System.out.println( "fire by userAgent2" );
+    	m.setSystem("frp");       
+        //update( m );
+        
 end
 
-rule "GoodBye"
+rule "check3"
     when
-        Message( status == Message.GOODBYE, myMessage : message )
+        m:Caller( userAgent == "tomcat" )
     then
-        System.out.println( myMessage );
+        System.out.println( "fire by userAgent3" );
+    	m.setSystem("reb");       
+       // update( m );
+        
 end

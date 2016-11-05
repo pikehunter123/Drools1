@@ -17,47 +17,64 @@ public class DroolsTest {
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
 
             // go !
-            Message message = new Message();
-            message.setMessage("Hello World5556");
-            message.setStatus(Message.HELLO);
+            Caller message = new Caller("sapuser","tomcat",null);
             kSession.insert(message);
             kSession.fireAllRules();
+            System.out.println("Result system name="+message.getSystem());            
             
-             kSession = kContainer.newKieSession("ksession-rules");
-            message.setMessage("Hello World55");
-            message.setStatus(Message.HELLO);
-            kSession.insert(message);
-            kSession.fireAllRules();
         } catch (Throwable t) {
             t.printStackTrace();
         }
     }
 
-    public static class Message {
+    public static class Caller {
 
-        public static final int HELLO = 0;
-        public static final int GOODBYE = 1;
+    	public Caller(String principalName, String userAgent, String clientName) {
+			super();
+			this.principalName = principalName;
+			this.userAgent = userAgent;
+			this.clientName = clientName;
+		}
 
-        private String message;
+		private String principalName;
+        private String userAgent;
+        private String clientName;
 
-        private int status;
+        private String system;
 
-        public String getMessage() {
-            return this.message;
-        }
+		public String getPrincipalName() {
+			return principalName;
+		}
 
-        public void setMessage(String message) {
-            this.message = message;
-        }
+		public void setPrincipalName(String principalName) {
+			this.principalName = principalName;
+		}
 
-        public int getStatus() {
-            return this.status;
-        }
+		public String getUserAgent() {
+			return userAgent;
+		}
 
-        public void setStatus(int status) {
-            this.status = status;
-        }
+		public void setUserAgent(String userAgent) {
+			this.userAgent = userAgent;
+		}
 
+		public String getClientName() {
+			return clientName;
+		}
+
+		public void setClientName(String clientName) {
+			this.clientName = clientName;
+		}
+
+		public String getSystem() {
+			return system;
+		}
+
+		public void setSystem(String system) {
+			this.system = system;
+		}
+
+        
     }
 
 }
