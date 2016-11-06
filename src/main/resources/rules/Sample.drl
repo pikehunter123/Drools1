@@ -3,15 +3,15 @@ package com.sample
 import com.sample.DroolsTest.Caller;
 dialect "java"
  
-/*rule "check1"
+rule "check1"
     when
-        m : Caller( name:principalName  )
+        m:Caller( principalName !=null,  !principalName.equals("")  )
     then
     	System.out.println( "fire by principalName " );
-        System.out.println( name );
-        m.setSystem(name);       
+        System.out.println(m.getPrincipalName() );
+        m.setSystem(m.getPrincipalName());       
        // update( m );
-end*/
+end
 
 rule "check2"
     when

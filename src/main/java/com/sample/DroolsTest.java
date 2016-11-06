@@ -17,9 +17,9 @@ public class DroolsTest {
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
 
             // go !
-            Caller message = new Caller("sapuser","tomcat",null);
+            Caller message = new Caller("frp","tomcat",null);
             kSession.insert(message);
-            kSession.fireAllRules();
+            kSession.fireAllRules(1);
             System.out.println("Result system name="+message.getSystem());            
             
         } catch (Throwable t) {
